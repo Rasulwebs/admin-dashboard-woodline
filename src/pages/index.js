@@ -23,13 +23,11 @@ import { getAllBranch, deleteOrder, postBranch } from "src/API/apis";
 import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
-import {BranchsTable} from "src/sections/branch/branchs-table"
+import { BranchsTable } from "src/sections/branch/branchs-table";
 
 const Page = () => {
-
-
   const [empty, setEmpty] = useState(false);
-const [branchData, setBranchData] = useState({name:"",location:[]})
+  const [branchData, setBranchData] = useState({ name: "", location: [] });
   const [addModalOpen, setAddModalOpen] = useState(false);
 
   const [allBranchData, setAllBranchData] = useState([]);
@@ -49,14 +47,14 @@ const [branchData, setBranchData] = useState({name:"",location:[]})
   }, []);
 
   // Post Branch
-const createBranch=async()=>{
-  try{
-    const data=await postBranch(branchData)
-    console.log(data)
-  }catch(err){
-    console.log(err)
-  }
-}
+  const createBranch = async () => {
+    try {
+      const data = await postBranch(branchData);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // postBranch
   // get all branch
   const getAllBranchDataFunc = async () => {
@@ -79,7 +77,7 @@ const createBranch=async()=>{
       console.log(err);
     }
   };
-  console.log(allBranchData)
+  console.log(allBranchData);
   return (
     <>
       <Head>
