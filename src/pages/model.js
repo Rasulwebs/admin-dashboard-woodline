@@ -26,10 +26,7 @@ import Link from "next/link";
 
 const now = new Date();
 
-
-
 const Page = () => {
-
   const [empty, setEmpty] = useState(false);
 
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -39,8 +36,6 @@ const Page = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   // const customers = useCustomers(page, rowsPerPage);
   // const customersIds = useCustomerIds(customers);
-
-
 
   useEffect(() => {
     getAllOrdersDataFunc();
@@ -148,7 +143,6 @@ const Page = () => {
           py: 2,
         }}
       >
-    
         <Toaster
           toastOptions={{
             success: { style: { background: "green", color: "white" } },

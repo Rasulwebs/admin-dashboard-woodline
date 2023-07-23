@@ -21,11 +21,11 @@ import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
 import { RoleTable } from "src/sections/role/role-table";
-import { getAllRole, postRole, deleteRole} from "src/API/role.api";
+import { getAllRole, postRole, deleteRole } from "src/API/role.api";
 
 const Page = () => {
   const [empty, setEmpty] = useState(false);
-const [addRoleData, setAddRoleData]=useState({title_uz:"",title_en:"",title_ru:""})
+  const [addRoleData, setAddRoleData] = useState({ title_uz: "", title_en: "", title_ru: "" });
   const [addModalOpen, setAddModalOpen] = useState(false);
 
   const [allRoleData, setAllRoleData] = useState([]);
@@ -56,18 +56,18 @@ const [addRoleData, setAddRoleData]=useState({title_uz:"",title_en:"",title_ru:"
     }
   };
 
-    // post role 
-    const addRoleFunc = async () => {
-      try {
-        const data = await postRole(addRoleData);
-        getAllRoleDataFunc();
-        setAddModalOpen(false);
-        toast.success("Created Succesfully");
-        // console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  // post role
+  const addRoleFunc = async () => {
+    try {
+      const data = await postRole(addRoleData);
+      getAllRoleDataFunc();
+      setAddModalOpen(false);
+      toast.success("Created Succesfully");
+      // console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // delete role
   const handleDeleteRole = async (id) => {
@@ -81,7 +81,7 @@ const [addRoleData, setAddRoleData]=useState({title_uz:"",title_en:"",title_ru:"
   };
   // const mapApi="AIzaSyDu3Xg5pV9KDYS2pmXu4RGPYLbHegWRka0";
 
-console.log(allRoleData)
+  console.log(allRoleData);
   return (
     <>
       <Head>
@@ -93,7 +93,7 @@ console.log(allRoleData)
           <TextField
             error={empty}
             onChange={(e) => {
-              setAddRoleData({...addRoleData, title_uz:e.target.value})
+              setAddRoleData({ ...addRoleData, title_uz: e.target.value });
               setEmpty(false);
             }}
             label="Title_Uz"
@@ -107,7 +107,7 @@ console.log(allRoleData)
           <TextField
             error={empty}
             onChange={(e) => {
-              setAddRoleData({...addRoleData, title_en:e.target.value})
+              setAddRoleData({ ...addRoleData, title_en: e.target.value });
 
               setEmpty(false);
             }}
@@ -117,11 +117,11 @@ console.log(allRoleData)
             <FormHelperText sx={{ color: "red" }}>не должно быть пустым</FormHelperText>
           ) : null}
         </FormControl>
-        <FormControl sx={{ my: "5px", mb:"15px" }} fullWidth>
+        <FormControl sx={{ my: "5px", mb: "15px" }} fullWidth>
           <TextField
             error={empty}
             onChange={(e) => {
-              setAddRoleData({...addRoleData, title_ru:e.target.value})
+              setAddRoleData({ ...addRoleData, title_ru: e.target.value });
               setEmpty(false);
             }}
             label="Title_Ru"
@@ -133,7 +133,7 @@ console.log(allRoleData)
         <Button
           // disabled={postLoading}
           onClick={() => {
-            addRoleFunc()
+            addRoleFunc();
           }}
           fullWidth
           variant="contained"
@@ -150,7 +150,7 @@ console.log(allRoleData)
           py: 2,
         }}
       >
-    <Container maxWidth="xxl">
+        <Container maxWidth="xxl">
           <Stack spacing={3}>
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
@@ -178,8 +178,6 @@ console.log(allRoleData)
             />
           </Stack>
         </Container>
-
-
 
         <Toaster
           toastOptions={{
