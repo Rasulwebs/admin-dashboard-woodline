@@ -150,7 +150,7 @@ export const ClientTable = (props) => {
                         </Stack>
                       </TableCell>
                 
-                      <TableCell>{moment(cl.createdAt).format("MMM DD YYYY")}</TableCell>
+                      <TableCell>{moment(cl.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       <TableCell>
                         <div>
                           <Button

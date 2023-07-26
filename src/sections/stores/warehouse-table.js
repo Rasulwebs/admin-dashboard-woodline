@@ -26,6 +26,7 @@ import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import { createTheme } from "@mui/material/styles";
 import moment from "moment/moment";
+import "moment/locale/ru";
 import ModalLayout from "src/components/modalLayout/modalLayout"
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -141,7 +142,7 @@ updateOpen
                     ) : (
                       <TableCell>{store.status}</TableCell>
                     )}
-                    <TableCell>{moment(store.createdAt).format("MMM DD YYYY")}</TableCell>
+                    <TableCell>{moment(store.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                     <TableCell>
                     <div>
                         <Button
@@ -172,7 +173,7 @@ updateOpen
                             disableRipple
                           >
                             <EditIcon />
-                            Edit Ctg
+                            Edit
                           </MenuItem>
                           <Divider sx={{ my: 0.5 }} />
                           <MenuItem

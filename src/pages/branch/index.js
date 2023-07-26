@@ -15,21 +15,22 @@ import {
   Typography,
   FormHelperText,
 } from "@mui/material";
-import { useSelection } from "src/hooks/use-selection";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
-import { CustomersTable } from "src/sections/orders/orders-table";
-import { applyPagination } from "src/utils/apply-pagination";
-import { getAllBranch, deleteOrder, postBranch } from "src/API/apis";
+import { getAllBranch, deleteOrder, postBranch } from "src/API/branch.api";
 import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
 import { BranchsTable } from "src/sections/branch/branchs-table";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+import L from "leaflet";
+import { useMap } from "react-leaflet";
 
 const Page = () => {
   const [empty, setEmpty] = useState(false);
   const [branchData, setBranchData] = useState({ name: "", location: [] });
   const [addModalOpen, setAddModalOpen] = useState(false);
-
   const [allBranchData, setAllBranchData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -47,7 +48,7 @@ const Page = () => {
   }, []);
 
   // Post Branch
-  const createBranch = async () => {
+  const createBranchFunc = async () => {
     try {
       const data = await postBranch(branchData);
       console.log(data);
@@ -55,13 +56,13 @@ const Page = () => {
       console.log(err);
     }
   };
-  // postBranch
+
   // get all branch
   const getAllBranchDataFunc = async () => {
     try {
       const data = await getAllBranch();
       setAllBranchData(data.data);
-      // console.log(data);
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -77,6 +78,8 @@ const Page = () => {
       console.log(err);
     }
   };
+
+  // const apiKey="AIzaSyDu3Xg5pV9KDYS2pmXu4RGPYLbHegWRka0"
   console.log(allBranchData);
   return (
     <>
@@ -89,7 +92,7 @@ const Page = () => {
           <TextField
             error={empty}
             onChange={(e) => {
-              // setOrderName({...orderName, name:e.target.value})
+              setBranchData({...branchData, name:e.target.value})
               // setNewCtgName(e.target.value);
               setEmpty(false);
             }}
@@ -142,7 +145,7 @@ const Page = () => {
         <Button
           // disabled={postLoading}
           onClick={() => {
-            // handleCreateCat();
+            createBranchFunc()
           }}
           fullWidth
           variant="contained"

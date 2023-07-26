@@ -29,6 +29,7 @@ import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import { createTheme } from "@mui/material/styles";
 import moment from "moment/moment";
+import "moment/locale/ru";
 import { useState } from "react";
 // import ModalLayout from "src/components/modalLayout/modalLayout";
 // import Link from "next/link";
@@ -156,7 +157,7 @@ export const TissueTable = (props) => {
                           <Typography variant="subtitle2">{ts.price2}</Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell>{moment(ts.createdAt).format("MMM DD YYYY")}</TableCell>
+                      <TableCell>{moment(ts.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       <TableCell>
                         <div>
                           <Button

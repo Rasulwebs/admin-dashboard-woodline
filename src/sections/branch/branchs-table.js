@@ -29,6 +29,7 @@ import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import { createTheme } from "@mui/material/styles";
 import moment from "moment/moment";
+import "moment/locale/ru";
 import { useState } from "react";
 
 
@@ -121,13 +122,11 @@ export const BranchsTable = (props) => {
               </TableHead>
               <TableBody>
                 {items?.map((branch,i) => {
-                  // console.log(customer?.leg?.name)
-                  // console.log(customer)
                   const isSelected = selected.includes(branch.id);
                   return (
                     <TableRow
                       hover
-                      key={branch.id}
+                      key={branch._id}
                       selected={isSelected}
                       sx={{ cursor: "pointer" }}
                     >
@@ -142,7 +141,7 @@ export const BranchsTable = (props) => {
                         </Stack>
                       </TableCell>
          
-                      <TableCell>{moment(branch.createdAt).format("MMM DD YYYY")}</TableCell>
+                      <TableCell>{moment(branch.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       {/* <TableCell>
                         <div>
                           <Button
@@ -176,7 +175,7 @@ export const BranchsTable = (props) => {
                                 disableRipple
                               >
                                 <EditIcon />
-                                Edit Ctg
+                                Edit
                               </MenuItem>
                             </Typography>
 

@@ -1,5 +1,4 @@
 import axios from "axios";
-// const baseURL=proccess.env.testBaseUrl
 const baseURL = "http://192.168.1.126:2525";
 const getAuthorizationToken = () => {
   const token = window.sessionStorage.getItem("token");
@@ -8,10 +7,10 @@ const getAuthorizationToken = () => {
   }
   return {};
 };
-// ================================================== Tissue API =================================================
+// ======================================================= Client API =================================================
 // GET ALL TISSUE
-export const getAllTissue = async () => {
-  const data = await axios.get(`${baseURL}/tissue`, {
+export const getAllClient = async () => {
+  const data = await axios.get(`${baseURL}/customer`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),
@@ -20,9 +19,9 @@ export const getAllTissue = async () => {
   return data;
   // console.log(data)
 };
-// GET one TISSUE
-export const getOneTissue = async (id) => {
-  const data = await axios.get(`${baseURL}/tissue/${id}`, {
+// GET one tissue
+export const getOneClient = async (id) => {
+  const data = await axios.get(`${baseURL}/customer/${id}`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),
@@ -32,10 +31,10 @@ export const getOneTissue = async (id) => {
   // console.log(data)
 };
 
-// Create TISSUE
-export const postTissue = async (props) => {
+// Create tissue
+export const postClient = async (props) => {
   const data = await axios.post(
-    `${baseURL}/tissue`,
+    `${baseURL}/customer`,
     { ...props },
     {
       headers: {
@@ -48,10 +47,10 @@ export const postTissue = async (props) => {
   // console.log(data)
 };
 
-// PUT TISSUE
-export const putTissue = async (id, props) => {
+// PUT tissue
+export const putClient = async (id, props) => {
   const data = await axios.put(
-    `${baseURL}/tissue/${id}`,
+    `${baseURL}/customer/${id}`,
     { props },
     {
       headers: {
@@ -64,9 +63,9 @@ export const putTissue = async (id, props) => {
   // console.log(data)
 };
 
-// DELETE TISSUE
-export const deleteTissue = async (id) => {
-  const data = await axios.delete(`${baseURL}/tissue/${id}`, {
+// DELETE tissue
+export const deleteClient = async (id) => {
+  const data = await axios.delete(`${baseURL}/customer/${id}`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),

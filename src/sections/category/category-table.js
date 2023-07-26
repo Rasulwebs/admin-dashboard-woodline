@@ -145,7 +145,7 @@ export const CategoryTable = (props) => {
                       </TableCell>
             
                 
-                      <TableCell>{moment(cat.createdAt).format("MMM DD YYYY")}</TableCell>
+                      <TableCell>{moment(cat.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       <TableCell>
                         <div>
                           <Button

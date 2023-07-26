@@ -19,7 +19,7 @@ import { useSelection } from "src/hooks/use-selection";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { CustomersTable } from "src/sections/orders/orders-table";
 import { applyPagination } from "src/utils/apply-pagination";
-import { getAllClient, deleteClient, postClient } from "src/API/apis";
+import { getAllClient, deleteClient, postClient } from "src/API/client.api";
 import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";

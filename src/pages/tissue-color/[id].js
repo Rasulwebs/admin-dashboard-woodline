@@ -194,7 +194,7 @@ const Page = () => {
             Order Time:
           </Typography>
           <Typography variant="p" mx={0} sx={{ fontSize: 20 }}>
-            {moment(order.createdAt).format("DD MMM YYYY")}
+            {moment(order.createdAt).format("DD MMM YYYY, HH:mm")}
           </Typography>
         </Stack>
 

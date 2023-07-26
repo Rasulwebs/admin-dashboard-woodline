@@ -29,6 +29,7 @@ import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import { createTheme } from "@mui/material/styles";
 import moment from "moment/moment";
+import "moment/locale/ru";
 import { useState } from "react";
 
 const StyledMenu = styled((props) => (
@@ -150,7 +151,7 @@ export const RoleTable = (props) => {
                         </Stack>
                       </TableCell>
                 
-                      <TableCell>{moment(el.createdAt).format("MMM DD YYYY")}</TableCell>
+                      <TableCell>{moment(el.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       <TableCell>
                         <div>
                           <Button

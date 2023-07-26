@@ -16,7 +16,6 @@ import {
   FormHelperText,
 } from "@mui/material";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
-import { getAllOrders, deleteOrder } from "src/API/apis";
 import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
