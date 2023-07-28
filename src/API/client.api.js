@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "http://192.168.1.126:2525";
+const baseURL = "http://192.168.1.129:2525";
 const getAuthorizationToken = () => {
   const token = window.sessionStorage.getItem("token");
   if (token) {

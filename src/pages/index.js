@@ -21,28 +21,27 @@ import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
 import { BranchsTable } from "src/sections/branch/branchs-table";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
-import "leaflet-control-geocoder/dist/Control.Geocoder.js";
-import L from "leaflet";
-import { useMap } from "react-leaflet";
 
 const Page = () => {
   const [empty, setEmpty] = useState(false);
   const [branchData, setBranchData] = useState({ name: "", location: [] });
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [allBranchData, setAllBranchData] = useState([]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const handleChangeLatitude = (event) => {
+    const newLatitude = event.target.value;
+    setBranchData((prevState) => ({
+      ...prevState,
+      location: [newLatitude, prevState.location[1]], // Latitude o'zgartiriladi
+    }));
+  };
 
-  const handlePageChange = useCallback((event, value) => {
-    setPage(value);
-  }, []);
-
-  const handleRowsPerPageChange = useCallback((event) => {
-    setRowsPerPage(event.target.value);
-  }, []);
-
+  const handleChangeLongitude = (event) => {
+    const newLongitude = event.target.value;
+    setBranchData((prevState) => ({
+      ...prevState,
+      location: [prevState.location[0], newLongitude], // Longitude o'zgartiriladi
+    }));
+  };
   useEffect(() => {
     getAllBranchDataFunc();
   }, []);
@@ -51,6 +50,9 @@ const Page = () => {
   const createBranchFunc = async () => {
     try {
       const data = await postBranch(branchData);
+      getAllBranchDataFunc()
+      toast.success("Create Succesfully");
+
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -62,6 +64,7 @@ const Page = () => {
     try {
       const data = await getAllBranch();
       setAllBranchData(data.data);
+      setAddModalOpen(false)
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -78,21 +81,22 @@ const Page = () => {
       console.log(err);
     }
   };
-
+  41.30294184713629, 69.18066238847462
+  // 41.3761109963247, 69.31187299105976
   // const apiKey="AIzaSyDu3Xg5pV9KDYS2pmXu4RGPYLbHegWRka0"
-  console.log(allBranchData);
+  console.log(branchData);
   return (
     <>
       <Head>
         <title>Флиал</title>
       </Head>
-      {/* ==============================================CREATE ORDER=========================== */}
-      <ModalLayout modalTitle="Order" setOpen={setAddModalOpen} open={addModalOpen}>
+      {/* ============================================== CREATE ORDER=========================== */}
+      <ModalLayout modalTitle="Brach" setOpen={setAddModalOpen} open={addModalOpen}>
         <FormControl sx={{ my: "5px", mt: "20px" }} fullWidth>
           <TextField
             error={empty}
             onChange={(e) => {
-              setBranchData({...branchData, name:e.target.value})
+              setBranchData({ ...branchData, name: e.target.value });
               // setNewCtgName(e.target.value);
               setEmpty(false);
             }}
@@ -103,49 +107,44 @@ const Page = () => {
           ) : null}
         </FormControl>
 
-        <FormControl sx={{ my: "5px" }} fullWidth>
-          <TextField
-            error={empty}
-            onChange={(e) => {
-              // setNewCtgName(e.target.value);
-              setEmpty(false);
-            }}
-            label="Location"
-          />
-          {empty ? (
-            <FormHelperText sx={{ color: "red" }}> не должно быть пустым</FormHelperText>
-          ) : null}
-        </FormControl>
-        {/* <FormControl sx={{ my: "5px" }} fullWidth>
-          <TextField
-            error={empty}
-            onChange={(e) => {
-              // setNewCtgName(e.target.value);
-              setEmpty(false);
-            }}
-            label="Status"
-          />
-          {empty ? (
-            <FormHelperText sx={{ color: "red" }}>полное имя не должно быть пустым</FormHelperText>
-          ) : null}
-        </FormControl> */}
-        {/* <FormControl sx={{ mb: "20px", mt: "5px" }} fullWidth>
-          <TextField
-            error={empty}
-            onChange={(e) => {
-              // setNewCtgName(e.target.value);
-              setEmpty(false);
-            }}
-            label="Complects"
-          />
-          {empty ? (
-            <FormHelperText sx={{ color: "red" }}>полное имя не должно быть пустым</FormHelperText>
-          ) : null}
-        </FormControl> */}
+        <Box sx={{ display: "flex", gap:1 }}>
+          <FormControl sx={{ my: "5px" }} fullWidth>
+            <TextField
+            type="number"
+              error={empty}
+              onChange={(e) => {
+                handleChangeLatitude(e)
+                setEmpty(false);
+              }}
+              label="Lat"
+            />
+            {empty ? (
+              <FormHelperText sx={{ color: "red" }}> не должно быть пустым</FormHelperText>
+            ) : null}
+          </FormControl>
+          <FormControl sx={{ my: "5px" }} fullWidth>
+            <TextField
+            type="number"
+              error={empty}
+              onChange={(e) => {
+                handleChangeLongitude(e)
+                setEmpty(false);
+              }}
+              label="Lng"
+            />
+            {empty ? (
+              <FormHelperText sx={{ color: "red" }}>
+                полное имя не должно быть пустым
+              </FormHelperText>
+            ) : null}
+          </FormControl>
+        </Box>
+
         <Button
+        sx={{mt:2}}
           // disabled={postLoading}
           onClick={() => {
-            createBranchFunc()
+            createBranchFunc();
           }}
           fullWidth
           variant="contained"
@@ -155,6 +154,69 @@ const Page = () => {
       </ModalLayout>
       {/* ============================================================================================= */}
 
+  {/* ============================================= UPDATE Branch ====================================== */}
+  <ModalLayout modalTitle="Update Brach" setOpen={setAddModalOpen} open={addModalOpen}>
+        <FormControl sx={{ my: "5px", mt: "20px" }} fullWidth>
+          <TextField
+            error={empty}
+            onChange={(e) => {
+              setBranchData({ ...branchData, name: e.target.value });
+              // setNewCtgName(e.target.value);
+              setEmpty(false);
+            }}
+            label="Branch"
+          />
+          {empty ? (
+            <FormHelperText sx={{ color: "red" }}>полное имя не должно быть пустым</FormHelperText>
+          ) : null}
+        </FormControl>
+
+        <Box sx={{ display: "flex", gap:1 }}>
+          <FormControl sx={{ my: "5px" }} fullWidth>
+            <TextField
+            type="number"
+              error={empty}
+              onChange={(e) => {
+                handleChangeLatitude(e)
+                setEmpty(false);
+              }}
+              label="Lat"
+            />
+            {empty ? (
+              <FormHelperText sx={{ color: "red" }}> не должно быть пустым</FormHelperText>
+            ) : null}
+          </FormControl>
+          <FormControl sx={{ my: "5px" }} fullWidth>
+            <TextField
+            type="number"
+              error={empty}
+              onChange={(e) => {
+                handleChangeLongitude(e)
+                setEmpty(false);
+              }}
+              label="Lng"
+            />
+            {empty ? (
+              <FormHelperText sx={{ color: "red" }}>
+                полное имя не должно быть пустым
+              </FormHelperText>
+            ) : null}
+          </FormControl>
+        </Box>
+
+        <Button
+        sx={{mt:2}}
+          // disabled={postLoading}
+          onClick={() => {
+            createBranchFunc();
+          }}
+          fullWidth
+          variant="contained"
+        >
+          Update
+        </Button>
+      </ModalLayout>
+      {/* ====================================================================================================== */}
       <Box
         component="main"
         sx={{
@@ -183,10 +245,6 @@ const Page = () => {
               open={addModalOpen}
               deleteFuncOrder={handleDeleteBranch}
               items={allBranchData}
-              onPageChange={handlePageChange}
-              onRowsPerPageChange={handleRowsPerPageChange}
-              page={page}
-              rowsPerPage={rowsPerPage}
             />
           </Stack>
         </Container>

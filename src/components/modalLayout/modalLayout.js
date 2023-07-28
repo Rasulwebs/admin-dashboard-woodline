@@ -19,7 +19,7 @@ export default function ModalLayout({
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "100%",
-    maxWidth: width || 400,
+    maxWidth: width || 500,
     bgcolor: "background.paper",
     boxShadow: 24,
     borderRadius: "4px",

@@ -19,7 +19,7 @@ import {
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
 import { loginUser } from "src/API/apis";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 const Page = () => {
   const router = useRouter();
 
@@ -39,11 +39,20 @@ const Page = () => {
       const { phone_number, password } = values;
       const data = await loginUser({ phone_number, password });
       setUserData(data.data);
-      window.sessionStorage.setItem("token", data.data.token);
-      // window.sessionStorage.setItem("fullName", data.data.fullname);
-
-      const token = window.sessionStorage.getItem("token");
+      console.log(data);
+   
+      if (data.code == "ERR_NETWORK") {
+        helpers.setErrors({ submit: "Error Network" });
+        helpers.setStatus({ success: false });
+        helpers.setSubmitting(false);
+        toast.error("Error Network, Please try again !");
+        
+      }
       if (data.data.token) {
+        window.sessionStorage.setItem("token", data.data.token);
+        // window.sessionStorage.setItem("fullName", data.data.fullname);
+  
+        const token = window.sessionStorage.getItem("token");
         auth.signIn();
         console.log(token);
         router.push("/");

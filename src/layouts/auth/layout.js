@@ -71,11 +71,12 @@ export const Layout = (props) => {
                 fontSize: "24px",
                 lineHeight: "32px",
                 mb: 10,
+              
               }}
               variant="h1"
             >
               Welcome to
-              <Box component="a" sx={{ color: "#15B79E" }} target="_blank">
+              <Box component="a" sx={{ color: "#15B79E", my:6}} target="_blank">
                 Woodline
               </Box>
             </Typography>

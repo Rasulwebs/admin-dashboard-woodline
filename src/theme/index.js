@@ -7,7 +7,7 @@ import { createTypography } from './create-typography';
 export function createTheme() {
   const palette = createPalette();
   const components = createComponents({ palette });
-  // const shadows = createShadows();
+  const shadows = createShadows();
   const typography = createTypography();
 
   return createMuiTheme({
@@ -22,7 +22,7 @@ export function createTheme() {
     },
     components,
     palette,
-    // shadows,
+    shadows,
     shape: {
       borderRadius: 8
     },

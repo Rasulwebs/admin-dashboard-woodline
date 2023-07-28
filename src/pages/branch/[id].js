@@ -1,8 +1,8 @@
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.js";
-import L from "leaflet";
 import LeafletGeocoder from "src/components/branchMap/LeafletGeocoder";
 import LeafletRoutingMachine from "src/components/branchMap/LeafletRoutingMachine";
 

@@ -20,7 +20,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ModalLayout from "src/components/modalLayout/modalLayout";
 import Link from "next/link";
 import { RoleTable } from "src/sections/role/role-table";
-import { getAllRole, postRole, deleteRole } from "src/API/role.api";
+import { getAllRole, postRole, deleteRole, putRole } from "src/API/role.api";
 
 const Page = () => {
   const [empty, setEmpty] = useState(false);
@@ -87,8 +87,11 @@ const Page = () => {
         <title>Роли</title>
       </Head>
       {/* ==============================================CREATE ORDER=========================== */}
-      <ModalLayout modalTitle="Добавить Роли" setOpen={setAddModalOpen} open={addModalOpen}>
-        <FormControl sx={{ my: "5px", mt: "20px" }} fullWidth>
+      <ModalLayout modalTitle="Добавить Роли"
+       setOpen={setAddModalOpen}
+       open={addModalOpen}>
+        <FormControl sx={{ my: "5px", mt: "20px" }}
+           fullWidth>
           <TextField
             error={empty}
             onChange={(e) => {
@@ -102,7 +105,8 @@ const Page = () => {
           ) : null}
         </FormControl>
 
-        <FormControl sx={{ my: "5px" }} fullWidth>
+        <FormControl sx={{ my: "5px" }}
+fullWidth>
           <TextField
             error={empty}
             onChange={(e) => {
@@ -116,7 +120,8 @@ const Page = () => {
             <FormHelperText sx={{ color: "red" }}>не должно быть пустым</FormHelperText>
           ) : null}
         </FormControl>
-        <FormControl sx={{ my: "5px", mb: "15px" }} fullWidth>
+        <FormControl sx={{ my: "5px", mb: "15px" }}
+fullWidth>
           <TextField
             error={empty}
             onChange={(e) => {
@@ -151,7 +156,9 @@ const Page = () => {
       >
         <Container maxWidth="xxl">
           <Stack spacing={3}>
-            <Stack direction="row" justifyContent="space-between" spacing={4}>
+            <Stack direction="row"
+justifyContent="space-between"
+spacing={4}>
               <Stack spacing={1}>
                 <Typography variant="h4">Роли</Typography>
               </Stack>

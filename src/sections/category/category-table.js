@@ -85,16 +85,9 @@ export const CategoryTable = (props) => {
   };
 
   const {
-    count = 0,
+ 
     items = [],
-    onDeselectAll,
-    onDeselectOne,
-    onPageChange = () => {},
-    onRowsPerPageChange,
-    onSelectAll,
-    onSelectOne,
-    page = 0,
-    rowsPerPage = 0,
+
     selected = [],
     setOpen,
     open,

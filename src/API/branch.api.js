@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "http://192.168.1.126:2525";
+const baseURL = "http://192.168.1.129:2525";
 const getAuthorizationToken = () => {
   const token = window.sessionStorage.getItem("token");
   if (token) {
@@ -43,7 +43,7 @@ export const postBranch = async (props) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        ...getAuthorizationToken(),
       },
     }
   );
@@ -59,7 +59,7 @@ export const putOrder = async (id, props) => {
     {
       Headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        ...getAuthorizationToken(),
       },
     }
   );
@@ -72,7 +72,7 @@ export const deleteOrder = async (id) => {
   const data = await axios.delete(`${baseURL}/branch/${id}`, {
     Headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...getAuthorizationToken(),
     },
   });
   return data;

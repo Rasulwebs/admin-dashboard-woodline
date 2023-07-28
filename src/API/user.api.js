@@ -1,7 +1,5 @@
 import axios from "axios";
-// const baseURL=proccess.env.testBaseUrl
 const baseURL = "http://192.168.1.129:2525";
-
 const getAuthorizationToken = () => {
   const token = window.sessionStorage.getItem("token");
   if (token) {
@@ -9,11 +7,10 @@ const getAuthorizationToken = () => {
   }
   return {};
 };
-
-// ================================================== Role API =================================================
-// GET ALL ROLE
-export const getAllRole = async () => {
-  const data = await axios.get(`${baseURL}/role`, {
+// ======================================================= User API =================================================
+// GET ALL USER
+export const getAllUser = async () => {
+  const data = await axios.get(`${baseURL}/user`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),
@@ -22,9 +19,9 @@ export const getAllRole = async () => {
   return data;
   // console.log(data)
 };
-// GET one ROLE
-export const getOneRole = async (id) => {
-  const data = await axios.get(`${baseURL}/role/${id}`, {
+// GET one USER
+export const getOneUser = async (id) => {
+  const data = await axios.get(`${baseURL}/user/${id}`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),
@@ -34,10 +31,10 @@ export const getOneRole = async (id) => {
   // console.log(data)
 };
 
-// Create ROLE
-export const postRole = async (props) => {
+// Create USER
+export const postUser = async (props) => {
   const data = await axios.post(
-    `${baseURL}/role`,
+    `${baseURL}/user`,
     { ...props },
     {
       headers: {
@@ -50,10 +47,10 @@ export const postRole = async (props) => {
   // console.log(data)
 };
 
-// PUT ROLE
-export const putRole = async (id, props) => {
+// PUT USER
+export const putUser = async (id, props) => {
   const data = await axios.put(
-    `${baseURL}/role/${id}`,
+    `${baseURL}/user/${id}`,
     { props },
     {
       headers: {
@@ -66,9 +63,9 @@ export const putRole = async (id, props) => {
   // console.log(data)
 };
 
-// DELETE TISSUE
-export const deleteRole = async (id) => {
-  const data = await axios.delete(`${baseURL}/role/${id}`, {
+// DELETE USER
+export const deleteUser = async (id) => {
+  const data = await axios.delete(`${baseURL}/user/${id}`, {
     headers: {
       "Content-Type": "application/json",
       ...getAuthorizationToken(),

@@ -22,14 +22,48 @@ import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import { styled } from "@mui/material/styles";
+
+const customAccordion = styled(Accordion)((theme) => ({
+  
+    "&::before":{
+      display:"none",
+
+    }
+
+}));
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const [expanded, setExpanded] = useState(false);
+  const [expanded2, setExpanded2] = useState(false);
 
+  const [items2, setItems2]=useState([
+    {
+      title: "Заказ",
+      path: "/order",
+      // icon: (
+      //   <SvgIcon fontSize="small">
+      //     {/* <LockClosedIcon /> */}
+      //   </SvgIcon>
+      // ),
+    },
+    {
+      title: "Продажа",
+      path: "/selling",
+      // icon: (
+      //   <SvgIcon fontSize="small">
+      //     {/* <LockClosedIcon /> */}
+      //   </SvgIcon>
+      // ),
+    },
+  ])
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+  const handleChange2 = (panel2) => (event, isExpanded) => {
+    setExpanded2(isExpanded ? panel2 : false);
   };
   const content = (
     <Scrollbar
@@ -136,6 +170,39 @@ export const SideNav = (props) => {
                 })}
               </AccordionDetails>
             </Accordion>
+            
+            <customAccordion
+              expanded={expanded === "panel2"}
+              onChange={handleChange2("panel2")}
+              sx={{ background: "transparent", color: "neutral.400", border:"none" }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}ss
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ flexShrink: 0, fontSize: 18, fontWeight: 400 }}>
+                Торговля
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {items2.map((item) => {
+                  const active = item.path ? pathname === item.path : false;
+
+                  return (
+                    <SideNavItem
+                      active={active}
+                      disabled={item.disabled}
+                      external={item.external}
+                      icon={item.icon}
+                      key={item.title}
+                      path={item.path}
+                      title={item.title}
+                    />
+                  );
+                })}
+              </AccordionDetails>
+            </customAccordion>
     
           </Stack>
         </Box>

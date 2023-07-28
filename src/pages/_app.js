@@ -18,10 +18,12 @@ const SplashScreen = () => null;
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  // Loading progress
   useNProgress();
 
   const getLayout = Component.getLayout ?? ((page) => page);
 
+  // custom theme editing 
   const theme = createTheme();
 
   return (

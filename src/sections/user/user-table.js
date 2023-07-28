@@ -70,7 +70,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export const ModelTable = (props) => {
+export const UserTable = (props) => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const open2 = anchorEl2;
   const [empty, setEmpty] = useState(false);
@@ -87,6 +87,7 @@ export const ModelTable = (props) => {
   const {
     count = 0,
     items = [],
+
     selected = [],
     setOpen,
     open,
@@ -108,13 +109,11 @@ export const ModelTable = (props) => {
               <TableHead>
                 <TableRow>
                 <TableCell>No</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Price 1</TableCell>
-                  <TableCell>Price 2</TableCell>
-                  <TableCell>Price 3</TableCell>
-                  <TableCell>Sale</TableCell>
-                  <TableCell>Seller Percent 1</TableCell>
-                  <TableCell>Seller Percent 2</TableCell>
+                  <TableCell>Full Name</TableCell>
+                  <TableCell>Branch</TableCell>
+                  <TableCell>Phone Number</TableCell>
+                  <TableCell>Role</TableCell>
+                  {/* <TableCell>Balance</TableCell> */}
                   <TableCell>CreatedAt</TableCell>
                   <TableCell>Settings</TableCell>
                 </TableRow>
@@ -138,39 +137,25 @@ export const ModelTable = (props) => {
                       </TableCell>
                       <TableCell>
                         <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.name}</Typography>
+                          <Typography variant="subtitle2">{cl.fullname}</Typography>
                         </Stack>
                       </TableCell>
                       <TableCell>
                         <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.price1}</Typography>
+                          <Typography variant="subtitle2">{cl.branch}</Typography>
                         </Stack>
                       </TableCell>
                       <TableCell>
                         <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.price2}</Typography>
+                          <Typography variant="subtitle2">{cl.phone_number}</Typography>
                         </Stack>
                       </TableCell>
                       <TableCell>
                         <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.price3}</Typography>
+                          <Typography variant="subtitle2">{cl.role}</Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell>
-                        <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.sale}</Typography>
-                        </Stack>
-                      </TableCell>
-                      <TableCell>
-                        <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.seller_percent1}</Typography>
-                        </Stack>
-                      </TableCell>
-                      <TableCell>
-                        <Stack alignItems="center" direction="row" spacing={2}>
-                          <Typography variant="subtitle2">{cl.seller_percent2}</Typography>
-                        </Stack>
-                      </TableCell>
+                      
                 
                       <TableCell>{moment(cl.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
                       <TableCell>

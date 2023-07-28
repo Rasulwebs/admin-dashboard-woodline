@@ -117,7 +117,7 @@ export const BranchsTable = (props) => {
                 <TableCell>No</TableCell>
                   <TableCell>Name</TableCell>
                   <TableCell>CreatedAt</TableCell>
-                  {/* <TableCell>Settings</TableCell> */}
+                  <TableCell>Settings</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -142,7 +142,7 @@ export const BranchsTable = (props) => {
                       </TableCell>
          
                       <TableCell>{moment(branch.createdAt).format("MMM DD YYYY, HH:mm")}</TableCell>
-                      {/* <TableCell>
+                      <TableCell>
                         <div>
                           <Button
                             id="demo-customized-button"
@@ -164,7 +164,7 @@ export const BranchsTable = (props) => {
                             open={open2}
                             onClose={handleClose2}
                           >
-                            <Typography component={Link} href={`/detail/${customer._id}`} underline="none">
+                            {/* <Typography component={Link} href={`/detail/${branch._id}`} underline="none">
                               <MenuItem
                               style={{color:"#3f51b5"
                               }}
@@ -177,12 +177,12 @@ export const BranchsTable = (props) => {
                                 <EditIcon />
                                 Edit
                               </MenuItem>
-                            </Typography>
+                            </Typography> */}
 
                             <Divider sx={{ my: 0.5 }} />
                             <MenuItem
                               onClick={() => {
-                                deleteFuncOrder(customer._id);
+                                // deleteFuncOrder(customer._id);
 
                                 handleClose2();
                               }}
@@ -193,7 +193,7 @@ export const BranchsTable = (props) => {
                             </MenuItem>
                           </StyledMenu>
                         </div>
-                      </TableCell> */}
+                      </TableCell>
                     </TableRow>
                   );
                 })}

@@ -2,11 +2,11 @@ import {
   createTheme,
   filledInputClasses,
   inputLabelClasses,
+  makeStyles,
   outlinedInputClasses,
   paperClasses,
   tableCellClasses
 } from '@mui/material';
-
 // Used only to create transitions
 const muiTheme = createTheme();
 
@@ -201,7 +201,7 @@ export function createComponents(config) {
             backgroundColor: 'transparent',
             [`& .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: palette.primary.main,
-              boxShadow: `${palette.primary.main} 0 0 0 2px`
+              // boxShadow: `${palette.primary.main} 0 0 0 2px`
             }
           },
           [`&.${filledInputClasses.error}`]: {
